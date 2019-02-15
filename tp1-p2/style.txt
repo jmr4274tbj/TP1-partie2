@@ -1,0 +1,24 @@
+
+Normes relatives au code : 
+
+Faire des sauts de ligne pour un code plus clair et lisible.
+Les noms de classes commencent toujours par une majuscule.
+Les noms des constantes sont toujours écrits en majuscules.
+Les noms des variables commencent toujours par une minuscule.
+Chaque ligne de codes ne dépassent pas 100 caractères.
+Il ne doit y avoir qu'une seule déclaration d'entité par ligne.
+Les fichiers doivent toujours avoir une entête en commentaire de ce format:
+
+Nom de classe : MaClasse
+
+Description   : Description de la classe et de son rôle
+
+Version       : 1.0
+
+Date          : 2019/01/01
+
+Programmeurs	: Moi
+
+Normes relatives au développement: 
+
+Ne jamais mettre de code non fonctionnel et qui contient des erreurs dans la branche master.
