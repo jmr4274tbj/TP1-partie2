@@ -12,5 +12,17 @@
 
 
 public class Client{
+	private String nom;
 
+	public Client(String nom) {
+		this.nom = nom;
+	}
+
+	public String getNom() {
+		return nom;
+	}
+
+	public boolean Equals(Client client) {
+		return nom.equals( client.getNom() );
+	}
 }

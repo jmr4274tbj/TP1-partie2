@@ -12,5 +12,19 @@
 
 
 public class Plat{
+	private String nomPlat;
+	private double prix = 0.0;
 
+	public Plat(String nomPlat, double prix) {
+		this.nomPlat = nomPlat;
+		this.prix = prix;
+	}
+
+	public double getPrix() {
+		return this.prix;
+	}
+
+	public boolean Equals(String string) {
+		return nomPlat.equals(string.toString());
+	}
 }
