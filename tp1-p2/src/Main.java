@@ -13,6 +13,9 @@
 //Note : Le notepad de windows n'affiche pas correctement la facture (eclipse ou notepad++ oui)
 
 import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.FileReader;
+import java.io.FileWriter;
 import java.util.ArrayList;
 import java.io.IOException;
 
@@ -34,7 +37,68 @@ public class Main {
 		
 		try {
 			
-		} catch( Exception ex ) {}
+			String lignePrecedente = null;	
+			
+			String ligneActuelle = null;
+			
+			ficLecture = new BufferedReader( new FileReader( nomFicCommande ) );
+
+			while ( ( ligneActuelle = ficLecture.readLine() ) != null ) {
+
+				if ( ligneActuelle.endsWith( ":" ) ) {
+
+					lignePrecedente = ligneActuelle.replace( " :", "" );
+
+				} else if ( lignePrecedente.equals( "Clients" ) ) {
+
+					Client client = new Client( ligneActuelle );
+					
+					listeClients.add( client );
+
+				} else if ( lignePrecedente.equals( "Plats" ) ) {
+
+					Plat plat = new Plat( ligneActuelle.split( " " )[0], 
+							Double.parseDouble( ligneActuelle.split( " " )[1] ) );
+					
+					listePlats.add( plat );
+
+				} else if ( lignePrecedente.equals( "Commandes" ) ) {
+
+					for ( Client client : listeClients ) {
+
+						if ( client.getNom().equals( ligneActuelle.split( " " )[0] ) ) {
+
+							for ( Plat plat : listePlats ) {
+
+								if ( plat.Equals( ligneActuelle.split( " " )[1] ) ) {
+
+									Commande commande = new Commande( client, plat, Integer
+											.parseInt( ligneActuelle.split( " " )[2] ) );
+									
+									listeCommandes.add( commande );
+									
+									break;
+								}
+							}
+						}
+					}
+				}
+			}
+
+			System.out.println( " " );
+			
+		} catch( Exception ex ) {
+			
+			BufferedWriter ficEcriture = new BufferedWriter( new FileWriter( nomFicFacture ) );
+			
+			ficEcriture.write( "Le fichier ne respecte pas le format demandé !" );
+				
+			System.out.println( "Le fichier ne respecte pas le format demandé !" );
+				
+			ficEcriture.close();
+				
+			System.exit( 0 );
+		}
 		
 	}
 }
