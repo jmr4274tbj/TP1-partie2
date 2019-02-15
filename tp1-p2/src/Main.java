@@ -100,6 +100,32 @@ public class Main {
 			System.exit( 0 );
 		}
 		
+		BufferedWriter ficEcriture = null;
+		
+		ficEcriture = new BufferedWriter( new FileWriter( nomFicFacture ) );
+			
+		ficEcriture.write( "Bienvenue chez Barette !\r\n" + "Factures:\n" );
+			
+		for ( Client clientCourrant : listeClients ) {
+				
+			ficEcriture.write( clientCourrant.getNom() + " " );
+
+			for ( Commande commande : listeCommandes ) {
+					
+				if ( commande.Contains( clientCourrant ) ) {
+						
+					ficEcriture.write( commande.getFacture() + "$\n" );
+						
+					break;
+					
+				} else if ( commande == listeCommandes.get( listeCommandes.size() - 1 ) ) {
+						
+					ficEcriture.write( "0.00$\n" );						
+				}
+			}
+		}
+			
+		ficEcriture.close();		
 	}
 }
 
